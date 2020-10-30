@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="ShoppingApp">
+    <head>
+        <title>Purchase</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/shopping.js"></script>
+    </head>
+    <body>
+        <div id="nav1" ng-include="'menu.html'" >z</div>
+        
+        <div id="header1">
+            <h1>How many do you want to buy?</h1>   
+        </div>
+
+        <table id="buy-table" ng-controller="CartController as cartCtrl">
+            <tbody>
+            <tr>
+                <th class="buy-table-label">ID:</th>
+                <td>{{cartCtrl.selectedProduct.productID}}</td>
+            </tr>
+            
+            <tr>
+                <th class="buy-table-label">Name:</th>
+                <td>{{cartCtrl.selectedProduct.name}}</td>
+            </tr>
+            
+            <tr>
+                <th class="buy-table-label">Description:</th>
+                <td>{{cartCtrl.selectedProduct.description}}</td>
+            </tr>
+            
+            <tr>
+                <th class="buy-table-label">Price:</th>
+                <td>{{cartCtrl.selectedProduct.price}}</td>
+            </tr>
+            
+            <tr>
+                <th class="buy-table-label">Quantity in stock:</th>
+                <td>{{cartCtrl.selectedProduct.stock}}</td>
+            </tr>
+            
+            </tbody>
+        </table>
+        
+        <div id="addtocart">
+            <h2>Quantity to buy</h2>
+            <form class="buyForm" ng-controller="CartController as cartCtrl">
+                <label for="amount">How many? </label>
+                <!-- input has client-side validation of min of 1 and has to be a number-->
+                <input id="textbox" type="number" name="amount" placeholder="99" required ng-model="quantity" min="1"> 
+                
+                <button id="addtocartSubmit" type="submit"  ng-click="cartCtrl.addToCart(quantity)">Add To Cart</button>
+            </form>
+        </div>
+    </body>
+</html>

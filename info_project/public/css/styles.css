@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap');
+
+html {
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 16px;
+    background-color: #f2f2f2; 
+}
+
+#welcome {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+#nav1{
+    text-align: center;
+}
+
+a {
+    color: steelblue;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 4px;
+    margin: 3px;
+    text-decoration: none;
+    font-size: 32px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+a:hover {
+    color: #f2f2f2;
+    background-color: steelblue;
+}
+
+#register-link {
+    font-size: 16px;
+}
+
+#register-link:hover {
+    background-color: #f2f2f2;
+    text-decoration: underline;
+}
+
+#register-link {
+    color: steelblue;
+    border: none;
+    border-radius: 0px;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+
+#header1 {
+    background-color: steelblue;
+    text-align: center;
+}
+
+#homeimages {
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    border: 2px solid black;
+    width: 33%;
+    margin: 0 auto;
+}
+
+p {
+    text-align: center;
+}
+
+#login, #accountdetails {
+    margin: 0 auto;
+    background-color: white;
+    width: 450px;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+.registerForm, .loginForm{
+    text-align: right;
+}
+
+.registerInput, .loginInput {
+    width: 350px;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.loginSubmit, .registerSubmit {
+    background-color: steelblue;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 7px;
+    color: #fff;
+    width: 80px;
+    margin-top: 5px;
+    margin-right: 185px;
+}
+
+.registerSubmit {
+    width: 110px;
+    margin-right: 170px;
+}
+
+#categories {
+    text-align: center;
+}
+
+.cats {
+    background-color: #f2f2f2;
+    padding: 5px 10px 5px 10px;
+    border-radius: 4px;
+    color: black;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 16px;
+    margin: 2px;
+}
+
+.cats:hover {
+    background-color: steelblue;
+    cursor: pointer;
+}
+
+
+#product-table {
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 2px solid black;
+    align-content: center;
+}
+
+#product-details {
+    width: 100%;
+}
+
+th {
+    background-color: grey;
+    font-size: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid grey;
+}
+
+#buy-table {
+    border: 2px solid black;
+    align-content: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.buy-table-label{
+    background-color: grey;
+    width: 27%;
+}
+
+
+/**
+th {
+    background-color: steelblue;
+    font-size: 18px;
+    margin-bottom: 3px;
+    padding: 8px;
+    min-width: 125px;
+    max-width: 125px;
+}
+
+tr {
+    border: 1px solid black;
+}
+
+td {
+    max-width: 80px;
+}
+
+
+
+
+#product-details {
+    width: 100%;
+    font-size: 16px;
+}
+
+**/
+
+#buy {
+    background-color: steelblue;
+    font-family: 'PT Sans Narrow', sans-serif;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 18px;
+    padding: 8px;
+    width: 100%;
+}
+
+#buy:hover {
+    background-color: #f2f2f2;
+    color: steelblue;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#addtocart {
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 40%;
+}
+
+
+
+#addtocartSubmit {
+    background-color: steelblue;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 7px;
+    color: #fff;
+    width: 30%;
+    margin-top: 5px;
+    margin-left: 30%;
+    min-width: 100px;
+    display: block;
+}
+
+#addtocartSubmit:hover {
+    color: steelblue;
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+#textbox {
+    width: 60%;
+}
+
+h2 {
+    margin: 0;
+   
+}
+
+
+#checkout {
+    background-color: steelblue;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 7px;
+    color: #fff;
+    width: 15%;
+    margin: 0 auto;
+    margin-top: 15px;
+    min-width: 100px;
+    display: block;
+}
+#checkout:hover {
+    background-color: #f2f2f2;
+    color: steelblue;
+    cursor: pointer;
+    border: 2px solid black;
+}

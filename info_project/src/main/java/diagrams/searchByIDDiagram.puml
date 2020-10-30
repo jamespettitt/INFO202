@@ -1,0 +1,55 @@
+@startuml
+skinparam {
+  Style StrictUML
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+actor User as user
+participant "Main" as main <<main>>
+participant "mainMenuDialog\n: Menu" as menu <<frame>>
+participant "productViewerDialog\n: ProductViewer" as viewer <<dialog>>
+participant "productModel\n: SimpleListModel" as model
+'participant "ProductEditor" as editor <<dialog>>
+'participant "ValidationHelper" as validator
+
+create "dao\n: ProductJdbcDAO" as dao <<ProductDAO>>
+main -> dao : <<construct>>
+create menu
+main -> menu : <<construct(dao)>>
+user -> menu : clicks 'View Products'
+activate menu
+create viewer
+menu -> viewer : <<construct(dao)>>
+activate viewer
+viewer -> dao++: 
+dao--
+create model
+viewer -> model : <<construct>>
+note over viewer: 'viewAllProducts.puml' shows this
+user <-- viewer : all products displayed
+deactivate viewer
+user -> viewer++ : type an ID into search textbox
+viewer--
+user -> viewer++ : clicks 'Search' button
+viewer -> dao++ : dao.searchByIdD(textSearchByID.getText());
+database "H2\nDatabase" as db
+dao -> db++ : select * from Product\n where Product_ID = ?
+return ResultSet
+dao->dao: product is reconstruced\nfrom ResultSet using\nrs.getX("Y")
+note right dao: Reconstruction repeats for\neach attribute of the product
+dao --> viewer: returns newly constructed product foundProduct
+dao--
+activate viewer
+viewer -> model++ : productModel.updateItems(foundProduct)
+model--
+viewer -> viewer : listProducts.setModel(productModel)
+viewer -> viewer : dispose()
+viewer --> menu
+deactivate viewer
+destroy viewer
+@enduml

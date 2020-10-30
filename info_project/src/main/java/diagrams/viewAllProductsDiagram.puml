@@ -1,0 +1,41 @@
+@startuml
+skinparam {
+  Style StrictUML
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+actor "User" as user
+participant "mainMenuDialog\n: MainMenu" as main <<form>>
+participant "productViewerDialog\n: ProductViewer" as add <<form>>
+participant "products\n: ProductCollectionsDAO" as dataAccess <<dao>>
+user -> main++ : Click "View Product"
+main--
+
+create add
+
+main -> add++ : <<construct>>
+
+
+
+add -> dataAccess : getProducts();
+dataAccess++
+return products
+
+add -> add : listProducts.setModel(productModel);
+add -> add : productModel.updateItems(products);
+
+add -> dataAccess : getCategories();
+dataAccess++
+return categories
+add -> add : categoryModel.updateItems(categories);
+
+add--
+
+main -> add++ : productViewerDialog.setVisible(true);
+
+@enduml

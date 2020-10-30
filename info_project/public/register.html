@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="ShoppingApp">
+    <head>
+        <title>Create an Account</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/shopping.js"></script>
+    </head>
+    <body>
+        <div id="nav1" ng-include="'menu.html'" >z</div>
+        
+        <div id="header1">
+            <h1>Create an Account</h1>
+        </div>
+        
+        <div id="accountdetails">
+            <h2>Account Details</h2>
+            
+            <form ng-submit="custCtrl.registerCustomer(customer)" ng-controller="CustomerController as custCtrl" class="registerForm">
+                <label for="username">Username: </label>
+                <input ng-model="customer.username" class="registerInput" type="text" name="username" placeholder="james" required><br>
+
+                <label for="firstname">First Name:</label>
+                <input ng-model="customer.firstName" class="registerInput" type="text" name="firstname" placeholder="James" required><br>
+
+                <label for="surname">Last Name:</label>
+                <input ng-model="customer.surname" class="registerInput" type="text" name="surname" placeholder="Pettitt" required><br>
+
+                <label for="email">Email:</label>
+                <input ng-model="customer.emailAddress" class="registerInput" type="email" name="email" placeholder="james@emailexample.co.nz" required><br>
+
+                <label for="address">Address:</label>
+                <input ng-model="customer.shippingAddress" class="registerInput" type="text" name="address" placeholder="123 Some Street, North East Valley, Dunedin" required><br>
+
+                <label for="password">Password:</label>
+                <input ng-model="customer.password" class="registerInput" type="password" name="password" placeholder="******" required><br>
+
+                <input class="registerSubmit" type="submit" name="submit" value="Create Account">
+            </form>
+            
+        </div>
+        
+    </body>
+</html>

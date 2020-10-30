@@ -1,0 +1,44 @@
+@startuml
+skinparam {
+  Style StrictUML
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+actor "Customer" as customer
+
+participant "viewproducts.html : Products Page" as productspage<<HTML Web Page>>
+customer->productspage++: clicks Browse Products
+
+Participant "prodCtrl : Product Controller" as prodctrl<<AngularJS>>
+productspage->prodctrl++: product in prodCtrl.products
+
+Participant "productAPI : Product API" as productsAPI<<API>>
+prodctrl->productsAPI++: productAPI.query();
+
+Participant "Jooby Module : ProductModule" as jooby<<Jooby>>
+productsAPI->jooby++: HTTP GET to /api/products
+
+Participant "productDao : ProductDAO" as productdao<<DAO>>
+jooby->productdao++: productDao.getProducts();
+
+productdao-->jooby: Java product objects
+productdao--
+
+jooby-->productsAPI: JSON product objects
+jooby--
+
+productsAPI-->prodctrl: products
+productsAPI--
+
+prodctrl-->productspage: JavaScript product objects
+prodctrl--
+
+productspage-->customer: views products
+productspage--
+
+@enduml

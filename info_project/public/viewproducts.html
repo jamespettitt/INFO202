@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="ShoppingApp">
+    <head>
+        <title>View Products</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="js/angular.js"></script>
+        <script src="js/angular-resource.js"></script>
+        <script src="js/ngStorage.js"></script>
+        <script src="js/shopping.js"></script>
+    </head>
+    <body ng-controller="ProductController as prodCtrl">
+        
+        <div id="nav1" ng-include="'menu.html'" >z</div>
+        
+        <div id="header1">
+            <h1>Products</h1>
+        </div>
+        
+        <div id="categories">
+            <button class="cats" ng-click="prodCtrl.selectAll()">All</button>
+            <button class="cats" ng-repeat="cat in prodCtrl.categories" ng-click="prodCtrl.selectCategory(cat)">{{cat}}</button>
+        </div>
+        
+        <div id="product-table">
+            <table id="product-details">
+                <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Price</th>
+                      <th>Available</th>
+                      <th></th>
+                    </tr>
+                </thead>
+            <tbody ng-controller="CartController as cartCtrl">
+                <tr data-ng-repeat="product in prodCtrl.products">
+                  <td>{{product.name}}</td>
+                  <td>{{product.description}}</td>
+                  <td>${{product.price}}</td>
+                  <td>{{product.stock}}</td>
+                  <td><button id="buy" type ="button" ng-click="cartCtrl.buyButton(product)">BUY</button></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        
+        
+        
+    </body>
+</html>

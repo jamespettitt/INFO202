@@ -1,0 +1,66 @@
+@startuml
+skinparam {
+  Style StrictUML
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+
+actor User as user
+participant "Main" as main <<main>>
+participant "mainMenuDialog\n: Menu" as menu <<frame>>
+participant "productViewerDialog\n: ProductViewer" as viewer <<dialog>>
+participant "productModel\n: SimpleListModel" as model
+ 
+create "dao\n: ProductJdbcDAO" as dao <<ProductDAO>>
+main -> dao : <<construct>>
+create menu
+main -> menu : <<construct(dao)>>
+user -> menu : clicks 'View Products'
+activate menu
+create viewer
+menu -> viewer : <<construct(dao)>>
+activate viewer
+viewer -> dao++: 
+dao--
+create model
+viewer -> model : <<construct>>
+note over viewer: 'viewAllProducts.puml' shows this
+user <-- viewer : all products displayed
+deactivate viewer
+user -> viewer++ : select a product to delete
+viewer--
+user -> viewer++ : clicks 'Delete' button
+activate viewer
+note over viewer : checks if anything is selected\nif not, does nothing
+viewer -> viewer : selected = listProducts.getSelectedValue()
+viewer->user: Dialog: "Are you sure you want to delete product selected?"
+alt clicks 'Yes' to confirm
+    user -> viewer: clicks 'Yes' to confirm
+    viewer->dao++ : dao.removeProduct(selected);
+    database "H2\nDatabase" as db
+    dao -> db++ : sql = "delete from Product\n where Product_ID = ?"
+    dao--
+    db--
+    viewer -> dao++ : dao.getProducts()
+    dao -> db++ : select * from Product
+    return ResultSet
+    dao->dao: product is reconstruced\nfrom ResultSet using\nrs.getX("Y")
+    note right dao: Reconstruction repeats for\neach attribute of the product
+    dao --> viewer : returns new product collection products
+    dao--
+    activate viewer
+    'return products
+    viewer -> model++ : productModel.updateItems(products)
+    model--
+    viewer -> viewer : listProducts.setModel(productModel)
+    viewer -> viewer : dispose()
+    viewer --> menu
+    deactivate viewer
+    destroy viewer
+end
+@enduml

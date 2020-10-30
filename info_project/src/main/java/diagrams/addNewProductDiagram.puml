@@ -1,0 +1,62 @@
+@startuml
+skinparam {
+  Style StrictUML
+  SequenceStereotype {
+    Font {
+      Size 10
+      Style plain
+    }
+  }
+}
+
+actor "User" as user
+participant "mainMenuDialog\n: MainMenu" as main <<form>>
+participant "productEditorDialog\n: ProductEditor" as add <<form>>
+'participant "products\n: ProductCollectionsDAO" as dataAccess <<dao>>
+participant "product\n: Product" as product <<domain>>
+
+user -> main++ : Click "Add a New Product"
+main--
+create add 
+main -> add++ : <<construct>>
+main -> add : productEditorDialog.setVisible(true);
+
+create "products\n: ProductCollectionsDAO" as dataAccess <<dao>>
+add -> dataAccess : <<construct>>
+
+add -> dataAccess : getCategories();
+dataAccess++
+return categories
+add -> add : set the categories in combobox
+add--
+
+
+alt User adds new product 
+user -> add++ : Enters Product Details
+add--
+user -> add++ : Clicks Save 
+
+
+
+
+
+create product
+add -> product : <<construct>>
+add -> add : txtID.getText(); gets id from GUI component
+add -> product++ : product.setProductID(id);
+product--
+
+note right of add: THIS REPEATS FOR RETRIEVING ALL DETAILS OF THE NEW PRODUCT
+
+add -> dataAccess++ : saveProduct(product)
+dataAccess--
+
+add--
+
+else User cancels
+user -> add++ : Clicks cancel 
+add -> add-- : dispose()
+
+end 
+
+@enduml
